@@ -5,8 +5,8 @@ public class Cliente {
     private String senha;
 
     public Cliente(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
+        this.email = validarEmail(email);
+        this.senha = validarSenha(senha);
     }
 
     public String getEmail() {
@@ -24,7 +24,7 @@ public class Cliente {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public String validarEmail() {
+    public String validarEmail(String email) {
         if(email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
             return email;
         }else {
@@ -32,7 +32,7 @@ public class Cliente {
         }
 
     }
-    public String validarSenha() {
+    public String validarSenha(String senha) {
         if (senha != null && senha.length() >= 4){
             return senha;
         }else{
