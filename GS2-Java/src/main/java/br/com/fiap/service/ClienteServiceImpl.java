@@ -18,7 +18,7 @@ final class ClienteServiceImpl implements ClienteService{
 
     @Override
     public Cliente create(Cliente c1) throws UnsupportedServiceOperationException, SQLException, ClienteNotSavedException {
-        if(c1.getEmail() == null){
+        if(c1.getEmail() != null){
             Connection connection = DBConnectionFactory.create().get();
             try {
                 c1 = this.dao.create(c1, connection);

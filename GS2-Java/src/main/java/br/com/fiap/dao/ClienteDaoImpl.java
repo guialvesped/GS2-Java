@@ -21,7 +21,7 @@ public class ClienteDaoImpl implements ClienteDao{
             pstat.setString(2, c1.getSenha());
 
             pstat.executeUpdate();
-
+            pstat.close();
             System.out.println("Dados inseridos com sucesso");
             return c1;
         } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class ClienteDaoImpl implements ClienteDao{
             while (rs.next()) {
                 String senha = rs.getString("senha");
                 String emailDb = rs.getString("email");
-                result.add(new Cliente(senha, emailDb));
+                result.add(new Cliente(emailDb, senha));
             }
 
             rs.close();

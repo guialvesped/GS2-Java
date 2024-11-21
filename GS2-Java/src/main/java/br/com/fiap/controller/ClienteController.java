@@ -22,7 +22,7 @@ public class ClienteController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response add(ClienteDto input) throws UnsupportedServiceOperationException {
+    public Response add(ClienteDto  input) throws UnsupportedServiceOperationException {
         if (input.getEmail() != null) {
             try {
                 Cliente c1 = this.clienteService.create(new Cliente(input.getEmail(), input.getSenha()));
@@ -38,11 +38,12 @@ public class ClienteController {
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                         .entity(Map.of("mensagem", "não foi possível salvar os dados"))
                         .build();
-            } catch (UnsupportedServiceOperationException e) {
-                return Response.status(Response.Status.BAD_REQUEST)
-                        .entity(Map.of("mensagem", "operação não suportada"))
-                        .build();
             }
+//            catch (UnsupportedServiceOperationException e) {
+//                return Response.status(Response.Status.BAD_REQUEST)
+//                        .entity(Map.of("mensagem", "operação não suportada"))
+//                        .build();
+//            }
         } else {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(Map.of("mensagem", "esse método só permite a criação de novas pessoas"))
